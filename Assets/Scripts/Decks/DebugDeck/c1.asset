@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdbe1976c5e10774abf609b0e6fb777a, type: 3}
+  m_Name: c1
+  m_EditorClassIdentifier: 
+  CardName: c1
+  Target: 0
+  Health: 150
+  Range: 2.5
+  Damage: 7
+  Speed: 5
+  InvokeTime: 0.75
+  ChannelSpeed: 1
+  RestTime: 0.5
+  PreviewSprite: {fileID: 0}
+  UnitAnimator: {fileID: 0}
