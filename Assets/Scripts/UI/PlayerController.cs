@@ -6,27 +6,34 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
     public EnergyDisplay m_display;
 
     [SerializeField] private float m_maxEnergy;
     [SerializeField] private float m_currentEnergy;
 
+    
+
     [Header("Player Deck")]
     [Space]
-    [SerializeField] private Deck m_currentDeck;
+    [SerializeField] private Deck m_currentDeck; // On game start, grab choosen deck and from that point on, that will be the one we edit.
+    // Card Displays will grab info from card info and units from cardInfo.UnitInfo
 
-    [Serializable]
-    public class Deck
+    private void Awake()
     {
-        public List<CardScriptable> AvailableCards;
-
-        public void ShuffleDeck()
-        {
-            System.Random rng = new System.Random();
-            AvailableCards = AvailableCards.OrderBy(_ => rng.Next()).ToList();
-        }
+        Instance = this;
+    }
+    private void Start()
+    {
+        var gameDeck = GameManager.Instance.DeckConfig.GetDeck();
+        SetPlayerDeck(gameDeck);
     }
 
+    public void SetPlayerDeck(Deck newDeck)
+    {
+        m_currentDeck = newDeck;
+        m_currentDeck.ShuffleDeck();
+    }
     public void InitializePlayer(float maxEnergy)
     {
         m_maxEnergy = maxEnergy;
@@ -49,5 +56,11 @@ public class PlayerController : MonoBehaviour
         }
 
         m_display.UpdateEnergyBar(m_currentEnergy, m_maxEnergy);
+    }
+
+    public void DeployUnit(UnitInfo unit, Vector2 position)
+    {
+        //var unit = Instantiate(GameManager.Instance.UnitPrefab, position, Quaternion.identity);
+        //unit.IntializeUnit(CardData.UnitData, team, CardData.PreviewSprite, CardData.UnitAnimator);
     }
 }

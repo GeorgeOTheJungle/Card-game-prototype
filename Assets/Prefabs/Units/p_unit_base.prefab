@@ -40,9 +40,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8244836901212391454}
+  - component: {fileID: 4777835116638858591}
   - component: {fileID: 6518493126012737352}
   - component: {fileID: 22229597108411740}
-  - component: {fileID: 4777835116638858591}
   - component: {fileID: 1120471242752395974}
   - component: {fileID: 5924763198916674779}
   - component: {fileID: 8354046134937757235}
@@ -73,6 +73,20 @@ Transform:
   - {fileID: 2714303749542523768}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4777835116638858591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056773303681763448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449d1153bee6a8d408f65ed3b9bf32b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_currentHealth: 0
+  m_healthBar: {fileID: 3997649024904426516}
 --- !u!114 &6518493126012737352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,20 +140,6 @@ MonoBehaviour:
     State: {fileID: 2605874495002082590}
   - UnitState: 6
     State: {fileID: 2705543402087434197}
---- !u!114 &4777835116638858591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056773303681763448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 449d1153bee6a8d408f65ed3b9bf32b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_currentHealth: 0
-  m_healthBar: {fileID: 3997649024904426516}
 --- !u!61 &1120471242752395974
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,31 +16,15 @@ public class UnitInfo : MonoBehaviour
         Gizmos.DrawWireSphere(UnitCenter.position, UnitData.Range);
     }
 
-    public void SetUnitStats(UnitData data)
+    public void IntializeUnit(UnitData card, Team team, Sprite preview, Animator animator)
     {
-        UnitData = data;
+        Team = team;
+
+        GameManager.Instance.AddUnitToTeamList(transform, team);
     }
 }
 
-[Serializable]
-public struct UnitData
-{
-    public string Name;
-    public TargetTypes Target;
-    [Space]
 
-    public float Health;
-    public float Damage;
-    public float ChannelSpeed;
-    [Space]
-
-    public float Range;
-    public float Speed;
-    [Space]
-
-    public float RestTime;
-    public float InvokeTime;
-}
 
 public enum Team
 {

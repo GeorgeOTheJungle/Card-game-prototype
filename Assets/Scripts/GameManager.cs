@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static CardData;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,23 @@ public class GameManager : MonoBehaviour
 
     public Transform[] PlayerStructures;
     public List<Transform> PlayerUnits;
+
+    [Header("Global References"), Space(5)]
+    public DeckConfig DeckConfig;
+    public UnitInfo UnitPrefab;
+
+
+    
+
+    [Space(5)]    
+    public int LightUnitHealthPerLevel;
+    public int MediumUnitHealthPerLevel;
+    public int HeavyUnitHealthPerLevel;
+
+    [Space(5)]
+    public int LightUnitDamagePerLevel;
+    public int MediumUnitDamagePerLevel;
+    public int HeavyUnitDamagePerLevel;
 
     public Action<float> OnEnergyUpdate;
     [Serializable]
@@ -47,13 +65,46 @@ public class GameManager : MonoBehaviour
     {
         OnEnergyUpdate?.Invoke(GlobalGameRules.EnergyRegen);
     }
-    public void OnUnitKilled(Transform unit, Team team)
+    public void RemoveUnitFromTeamList(Transform unit, Team team)
     {
         List<Transform> unitsList = team == Team.Player ? PlayerUnits : OpponentUnits;
         unitsList.Remove(unit);
     }
 
+    public void AddUnitToTeamList(Transform unit, Team team)
+    {
+        List<Transform> unitsList = team == Team.Player ? PlayerUnits : OpponentUnits;
+        unitsList.Add(unit);
+    }
+
+    public void DeployUnitToBoard(UnitInfo unit, Vector2 position, Team team)
+    {
+
+    }
+
     #region Utility
+
+    public int GetHealthPerLevel(CardTypes cardType)
+    {
+        return cardType switch
+        {
+            CardTypes.Unit_Light => LightUnitHealthPerLevel,
+            CardTypes.Unit_Medium => MediumUnitHealthPerLevel,
+            CardTypes.Unit_Heavy => HeavyUnitHealthPerLevel,
+            _ => 0,
+        };
+    }
+
+    public int GetDamagePerLevel(CardTypes cardType)
+    {
+        return cardType switch
+        {
+            CardTypes.Unit_Light => LightUnitDamagePerLevel,
+            CardTypes.Unit_Medium => MediumUnitDamagePerLevel,
+            CardTypes.Unit_Heavy => HeavyUnitDamagePerLevel,
+            _ => 0,
+        };
+    }
 
     public UnitInfo GetClosestTarget(TargetTypes targetType, Vector2 unitPosition, Team team)
     {
@@ -107,47 +158,6 @@ public class GameManager : MonoBehaviour
         return ret;
     }
 
-    //public Transform GetClosestUnit(Vector2 unitPosition, Team unitTeam)
-    //{
-    //    Transform ret = null;
-    //    // tmp
-    //    Transform[] units = unitTeam == Team.Player ? OpponentUnits.ToArray() : PlayerUnits.ToArray();
-
-    //    float minDistance = Mathf.Infinity;
-    //    foreach (var structure in units)
-    //    {
-    //        float dist = Vector2.Distance(structure.transform.position, unitPosition);
-
-    //        if (dist < minDistance)
-    //        {
-    //            ret = structure.transform;
-    //            minDistance = dist;
-    //        }
-    //    }
-
-    //    return ret;
-    //}
-
-    //public Transform GetClosestStructure(Vector2 unitPosition, Team unitTeam)
-    //{
-    //    Transform ret = null;
-
-    //    Transform[] structures = unitTeam == Team.Player ? OpponentStructures : PlayerStructures;
-
-    //    float minDistance = Mathf.Infinity;
-    //    foreach (var structure in structures)
-    //    {
-    //        float dist = Vector2.Distance(structure.transform.position, unitPosition);
-
-    //        if (dist < minDistance)
-    //        {
-    //            ret = structure.transform;
-    //            minDistance = dist;
-    //        }
-    //    }
-
-    //    return ret;
-    //}
     #endregion
 
 }

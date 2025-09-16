@@ -10,7 +10,7 @@ public class ChannelState : State
     public override void OnStart()
     {
         m_aggroRange = UnitInfo.UnitData.Range;
-        m_channelTime = UnitInfo.UnitData.ChannelSpeed;
+        m_channelTime = UnitInfo.UnitData.AttackSpeed;
 
         Agent.isStopped = true;
     }

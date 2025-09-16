@@ -11,7 +11,7 @@ public class AttackingState : State
     public override void OnStart()
     {
         m_range = UnitInfo.UnitData.Range;
-        m_attackCounter = UnitInfo.UnitData.ChannelSpeed;
+        m_attackCounter = UnitInfo.UnitData.AttackSpeed;
 
         float unitDamage = UnitInfo.UnitData.Damage;
         UnitInfo targetUnitInfo = UnitStateMachine.Target;

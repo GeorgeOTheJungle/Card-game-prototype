@@ -72,7 +72,7 @@ public class UnitStateMachine : MonoBehaviour
         if (Target != null)
             return;
 
-        Target = GameManager.Instance.GetClosestTarget(m_unitInfo.UnitData.Target, transform.position, m_unitInfo.Team);
+        Target = GameManager.Instance.GetClosestTarget(m_unitInfo.UnitData.Targets, transform.position, m_unitInfo.Team);
     }
 }
 
