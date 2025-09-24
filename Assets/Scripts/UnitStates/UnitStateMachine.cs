@@ -28,10 +28,6 @@ public class UnitStateMachine : MonoBehaviour
         m_healthComponent.InitializeHealth(m_unitInfo.UnitData.Health, this);
     }
 
-    public void DeployUnit()
-    {
-
-    }
     private void InitializeStates()
     {
         foreach (var state in m_states)
@@ -72,7 +68,7 @@ public class UnitStateMachine : MonoBehaviour
         if (Target != null)
             return;
 
-        Target = GameManager.Instance.GetClosestTarget(m_unitInfo.UnitData.Target, transform.position, m_unitInfo.Team);
+        Target = GameManager.Instance.GetClosestTarget(m_unitInfo.UnitData.Targets, transform.position, m_unitInfo.Team);
     }
 }
 

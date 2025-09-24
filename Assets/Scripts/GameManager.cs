@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static CardData;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,14 +11,31 @@ public class GameManager : MonoBehaviour
     public GameRules GlobalGameRules;
 
     [Header("Opponent Data")]
-    public Transform[] OpponentStructures;
+    public UnitInfo[] OpponentStructures;
     public List<Transform> OpponentUnits;
 
     [Header("Player Data")]
     [SerializeField] private PlayerController m_playerController;
 
-    public Transform[] PlayerStructures;
+    public UnitInfo[] PlayerStructures;
     public List<Transform> PlayerUnits;
+
+    [Header("Global References"), Space(5)]
+    public DeckConfig DeckConfig;
+
+    public Material RangeAttackMaterial;
+
+    
+
+    [Space(5)]    
+    public int LightUnitHealthPerLevel;
+    public int MediumUnitHealthPerLevel;
+    public int HeavyUnitHealthPerLevel;
+
+    [Space(5)]
+    public int LightUnitDamagePerLevel;
+    public int MediumUnitDamagePerLevel;
+    public int HeavyUnitDamagePerLevel;
 
     public Action<float> OnEnergyUpdate;
     [Serializable]
@@ -47,13 +65,41 @@ public class GameManager : MonoBehaviour
     {
         OnEnergyUpdate?.Invoke(GlobalGameRules.EnergyRegen);
     }
-    public void OnUnitKilled(Transform unit, Team team)
+    public void RemoveUnitFromTeamList(Transform unit, Team team)
     {
         List<Transform> unitsList = team == Team.Player ? PlayerUnits : OpponentUnits;
         unitsList.Remove(unit);
     }
 
+    public void AddUnitToTeamList(Transform unit, Team team)
+    {
+        List<Transform> unitsList = team == Team.Player ? PlayerUnits : OpponentUnits;
+        unitsList.Add(unit);
+    }
+
     #region Utility
+
+    public int GetHealthPerLevel(CardTypes cardType)
+    {
+        return cardType switch
+        {
+            CardTypes.Unit_Light => LightUnitHealthPerLevel,
+            CardTypes.Unit_Medium => MediumUnitHealthPerLevel,
+            CardTypes.Unit_Heavy => HeavyUnitHealthPerLevel,
+            _ => 0,
+        };
+    }
+
+    public int GetDamagePerLevel(CardTypes cardType)
+    {
+        return cardType switch
+        {
+            CardTypes.Unit_Light => LightUnitDamagePerLevel,
+            CardTypes.Unit_Medium => MediumUnitDamagePerLevel,
+            CardTypes.Unit_Heavy => HeavyUnitDamagePerLevel,
+            _ => 0,
+        };
+    }
 
     public UnitInfo GetClosestTarget(TargetTypes targetType, Vector2 unitPosition, Team team)
     {
@@ -65,24 +111,34 @@ public class GameManager : MonoBehaviour
     private List<Transform> GetUnitsFromTeam(TargetTypes targetType, Team team)
     {
         List<Transform> result = new List<Transform>();
-
-        if (targetType == TargetTypes.UnitsOnly || targetType == TargetTypes.Both)
+        // IF the unit target units but there is none, by default it should 
+        switch (targetType)
         {
-            foreach (var unit in team == Team.Player ? OpponentUnits : PlayerUnits)
-            {
-                result.Add(unit);
-            }
-        }
+            case TargetTypes.Both:
+                foreach (var unit in team == Team.Player ? OpponentUnits : PlayerUnits)
+                {
+                    result.Add(unit);
+                }
 
-        if (targetType == TargetTypes.BuildingsOnly || targetType == TargetTypes.Both)
-        {
-            foreach (var building in team == Team.Player ? OpponentStructures : PlayerStructures)
-            {
-                // TODO: if building is already destroyed, ignore it
-                result.Add(building);
-            }
+                foreach (var building in team == Team.Player ? OpponentStructures : PlayerStructures)
+                {
+                    result.Add(building.transform);
+                }
+                break;
+            case TargetTypes.UnitsOnly:
+                foreach (var unit in team == Team.Player ? OpponentUnits : PlayerUnits)
+                {
+                    result.Add(unit);
+                }
+                break;
+            case TargetTypes.BuildingsOnly:
+                foreach (var building in team == Team.Player ? OpponentStructures : PlayerStructures)
+                {
+                    // TODO: if building is already destroyed, ignore it
+                    result.Add(building.transform);
+                }
+                break;
         }
-
         return result;
     }
 
@@ -107,47 +163,24 @@ public class GameManager : MonoBehaviour
         return ret;
     }
 
-    //public Transform GetClosestUnit(Vector2 unitPosition, Team unitTeam)
-    //{
-    //    Transform ret = null;
-    //    // tmp
-    //    Transform[] units = unitTeam == Team.Player ? OpponentUnits.ToArray() : PlayerUnits.ToArray();
-
-    //    float minDistance = Mathf.Infinity;
-    //    foreach (var structure in units)
-    //    {
-    //        float dist = Vector2.Distance(structure.transform.position, unitPosition);
-
-    //        if (dist < minDistance)
-    //        {
-    //            ret = structure.transform;
-    //            minDistance = dist;
-    //        }
-    //    }
-
-    //    return ret;
-    //}
-
-    //public Transform GetClosestStructure(Vector2 unitPosition, Team unitTeam)
-    //{
-    //    Transform ret = null;
-
-    //    Transform[] structures = unitTeam == Team.Player ? OpponentStructures : PlayerStructures;
-
-    //    float minDistance = Mathf.Infinity;
-    //    foreach (var structure in structures)
-    //    {
-    //        float dist = Vector2.Distance(structure.transform.position, unitPosition);
-
-    //        if (dist < minDistance)
-    //        {
-    //            ret = structure.transform;
-    //            minDistance = dist;
-    //        }
-    //    }
-
-    //    return ret;
-    //}
     #endregion
 
+    #region Debug
+
+    private bool m_buildingsAttack = true;
+    public void ToggleBuildingsAttack()
+    {
+        m_buildingsAttack = !m_buildingsAttack;
+
+        foreach(var building in OpponentStructures)
+        {
+            building.UnitData.Range = m_buildingsAttack ? 3 : 0;
+        }
+
+        foreach (var building in PlayerStructures)
+        {
+            building.UnitData.Range = m_buildingsAttack ? 3 : 0;
+        }
+    }
+    #endregion
 }

@@ -9,37 +9,31 @@ public class UnitInfo : MonoBehaviour
     public UnitData UnitData;
     public Transform UnitCenter;
 
-    private void OnDrawGizmos()
+    [SerializeField] private SpriteRenderer m_spriteRenderer;
+    [SerializeField] private SpriteRenderer m_previewRendere;
+
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(UnitCenter.position, UnitData.Range);
     }
 
-    public void SetUnitStats(UnitData data)
+    public void IntializeUnit(UnitData data, Team team, Sprite activeSprite, Sprite preview, Animator animator)
     {
+        Team = team;
+
         UnitData = data;
+
+        m_spriteRenderer.sprite = activeSprite;
+        m_previewRendere.sprite = preview;
+
+        //Animator
+
+        GameManager.Instance.AddUnitToTeamList(transform, team);
     }
 }
 
-[Serializable]
-public struct UnitData
-{
-    public string Name;
-    public TargetTypes Target;
-    [Space]
 
-    public float Health;
-    public float Damage;
-    public float ChannelSpeed;
-    [Space]
-
-    public float Range;
-    public float Speed;
-    [Space]
-
-    public float RestTime;
-    public float InvokeTime;
-}
 
 public enum Team
 {
@@ -49,7 +43,7 @@ public enum Team
 
 public enum TargetTypes
 {
-    UnitsOnly,
+    UnitsOnly, //For buildings
     BuildingsOnly,
     Both,
 }

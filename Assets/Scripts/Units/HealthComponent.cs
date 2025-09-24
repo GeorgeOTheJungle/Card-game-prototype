@@ -34,7 +34,7 @@ public class HealthComponent : MonoBehaviour
         if (m_currentHealth <= 0)
         {
             m_stateMachine.ChangeState(UnitStates.Dead);
-            GameManager.Instance.OnUnitKilled(transform, m_stateMachine.m_unitInfo.Team);
+            GameManager.Instance.RemoveUnitFromTeamList(transform, m_stateMachine.m_unitInfo.Team);
         }
 
         m_healthBar.fillAmount = m_currentHealth / m_maxHealth;
