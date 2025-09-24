@@ -5,16 +5,8 @@ using UnityEngine.AI;
 
 public class MovementState : State
 {
-    //private NavMeshAgent m_agent;
-
     private float m_range;
 
-    public override void OnIntialization()
-    {
-        base.OnIntialization();
-        Agent.updateRotation = false;
-        Agent.updateUpAxis = false;
-    }
     public override void OnStart()
     {
         m_range = UnitInfo.UnitData.Range;

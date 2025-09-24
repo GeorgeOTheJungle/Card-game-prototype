@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class DamageComponent : MonoBehaviour
 {
+
+    public virtual void Initialize() { }
     public void PerformAttack(float damage, UnitInfo targetInfo, Vector2 center)
     {
         if (targetInfo.TryGetComponent(out HealthComponent healthComponent))

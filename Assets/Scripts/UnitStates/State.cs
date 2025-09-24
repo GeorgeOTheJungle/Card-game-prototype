@@ -14,12 +14,23 @@ public abstract class State : MonoBehaviour
     protected UnitStateMachine UnitStateMachine;
     protected UnitInfo UnitInfo;
     protected NavMeshAgent Agent;
+
+    private void Awake()
+    {
+        Agent = GetComponentInParent<NavMeshAgent>();
+        if (Agent)
+        {
+            Agent.updateRotation = false;
+            Agent.updateUpAxis = false;
+        }
+    }
     public void Initialize(UnitInfo unitInfo, UnitStateMachine unitStateMachine)
     {
         UnitStateMachine = unitStateMachine;
         UnitInfo = unitInfo;
 
-        Agent = GetComponentInParent<NavMeshAgent>();
+
+
         OnIntialization();
     }
 

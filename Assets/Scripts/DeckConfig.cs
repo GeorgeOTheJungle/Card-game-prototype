@@ -12,6 +12,9 @@ public class DeckConfig : ScriptableObject
     public int TotalCardsGenerated = 8;
     public int TotalDecksGenerated = 1;
 
+    public Sprite DebugPreviewSprite;
+    public Sprite DebugUnitSprite;
+
     [Space(10)]
     [Header("Cards")]
     public List<CardData> Cards = new List<CardData>();
@@ -36,15 +39,18 @@ public class DeckConfig : ScriptableObject
             float damage = UnityEngine.Random.Range(1, 15);
             float attackSpeed = UnityEngine.Random.Range(0.25f, 1.5f);
 
-            float range = UnityEngine.Random.Range(1, 3);
+            float range = UnityEngine.Random.Range(2, 4);
             float speed = UnityEngine.Random.Range(1, 5);
 
+            float idleTime = UnityEngine.Random.Range(0.25f, 0.75f);
             float restTime = UnityEngine.Random.Range(0.35f, 1);
             float invokeTime = UnityEngine.Random.Range(0.25f, 1f);
 
-            var unitData = new UnitData(TargetTypes.UnitsOnly, health, damage, attackSpeed, range, speed, restTime, invokeTime, card.CardType, card.CardLevel);
+            var unitData = new UnitData(TargetTypes.Both, health, damage, attackSpeed, range, speed, idleTime, restTime, invokeTime, card.CardType, card.CardLevel);
             card.UnitData = unitData;
 
+            card.PreviewSprite = DebugPreviewSprite;
+            card.CardImage = DebugUnitSprite;
             Cards.Add(card);
         }
     }
@@ -67,19 +73,40 @@ public class DeckConfig : ScriptableObject
         }
     }
 
+    [ContextMenu("GenerateDeck")]
+    public void GenerateDeck()
+    {
+        PremadeDecks.Clear();
+        for (int i = 0; i < TotalDecksGenerated; i++)
+        {
+            var cardList = new List<CardData>();
+            for (int d = 0; d < 8; d++)
+            {
+                var card = Cards[d];
+                cardList.Add(card);
+            }
+
+            var deck = new Deck($"Deck {i}", cardList);
+            PremadeDecks.Add(deck);
+        }
+    }
+
     public Deck GetDeck(int i = -1)
     {
+
         if (i == -1)
         {
             return PremadeDecks[UnityEngine.Random.Range(0, PremadeDecks.Count)];
         }
         i = Mathf.Clamp(i, 0, PremadeDecks.Count - 1);
-        return PremadeDecks[i];
+
+        var deck = PremadeDecks[i].GetDeck();
+        return deck;
     }
 }
 
 [Serializable]
-public class Deck
+public struct Deck
 {
     public string DeckName;
     public List<CardData> AvailableCards;
@@ -90,10 +117,47 @@ public class Deck
         AvailableCards = cards;
     }
 
+    public Deck GetDeck()
+    {
+        var deck = new Deck(DeckName, AvailableCards);
+        return deck;
+    }
     public void ShuffleDeck()
     {
         System.Random rng = new System.Random();
         AvailableCards = AvailableCards.OrderBy(_ => rng.Next()).ToList();
+    }
+
+    public void RemoveCard(CardData cardData)
+    {
+        AvailableCards.Remove(cardData);
+    }
+
+    public void AddCard(CardData cardData)
+    {
+        AvailableCards.Add(cardData);
+    }
+
+    public CardData GetCard()
+    {
+        var card = AvailableCards[0];
+        RemoveCard(card);
+        card.InHand = true;
+        return card;
+    }
+    public List<CardData> GetCards(int amount)
+    {
+        var cards = new List<CardData>();
+        for (int i = 0; i < amount; i++)
+        {
+            var card = AvailableCards[i];
+            card.InHand = true;
+            cards.Add(card);
+
+            RemoveCard(card);
+        }
+
+        return cards;
     }
 }
 [Serializable]
@@ -104,6 +168,7 @@ public class CardData
 
     public int CardCost;
     public int CardLevel;
+    public bool InHand;
     public CardTypes CardType;
 
     public UnitData UnitData;
@@ -133,14 +198,16 @@ public class UnitData
     public float AttackSpeed;
     [Space]
 
+    public bool RangedAttacker;
     public float Range;
     public float Speed;
     [Space]
 
+    public float IdleTime;
     public float RestTime;
     public float InvokeTime;
 
-    public UnitData(TargetTypes targets, float health, float damage, float attackSpeed, float range, float speed, float restTime, float invokeTime, CardData.CardTypes cardType, int level)
+    public UnitData(TargetTypes targets, float health, float damage, float attackSpeed, float range, float speed, float idleTime, float restTime, float invokeTime, CardData.CardTypes cardType, int level)
     {
         Targets = targets;
 
@@ -152,8 +219,10 @@ public class UnitData
         AttackSpeed = attackSpeed;
 
         Range = range;
+        RangedAttacker = Range >= 1.5f;
         Speed = speed;
 
+        IdleTime = idleTime;
         RestTime = restTime;
         InvokeTime = invokeTime;
     }

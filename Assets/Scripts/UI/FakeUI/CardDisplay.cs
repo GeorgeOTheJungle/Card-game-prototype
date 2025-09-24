@@ -1,20 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CardDisplay : MonoBehaviour
 {
-    [SerializeField]
-    private CardData m_cardData;
+    [SerializeField] private TextMeshPro m_cardTextMesh;
+    [SerializeField] private TextMeshPro m_cardCostTextMesh;
 
-    public void SetCardData(CardData cardData)
+    public void Populate(string cardName, int cardCost)
     {
-       m_cardData = cardData;
-    }
-
-    public void OnCardPlaced()
-    {
-
+        m_cardTextMesh.SetText(cardName);
+        m_cardCostTextMesh.SetText(cardCost.ToString());
     }
 }

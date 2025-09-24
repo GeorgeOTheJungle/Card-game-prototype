@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class DragableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DragableObject : MonoBehaviour
 {
-    Vector2 m_originalPosition;
-    private Vector3 offset;
-    private RectTransform rect;
+    Vector3 m_originalPosition;
+    private Vector3 m_offset;
+
+    private Vector3 m_screenPoint;
+
+    public UnityEvent OnCardDrag;
+    public UnityEvent OnCardDrop;
 
     private void Start()
     {
@@ -16,38 +21,31 @@ public class DragableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     public void InitializeCard()
     {
-        m_originalPosition = transform.position;
+        m_originalPosition = transform.position; 
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    private void OnMouseDown()
     {
-        offset = transform.position - MouseWorldPosition(eventData);
+        m_screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+
+        m_offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, m_screenPoint.z));
+    }
+    private void OnMouseDrag()
+    {
+        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, m_screenPoint.z);
+
+        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + m_offset;
+        transform.position = curPosition;
+
+        OnCardDrag?.Invoke();
     }
 
-    // If card moves detects the board, then transform to a preview unit
-    public void OnDrag(PointerEventData eventData)
+    private void OnMouseUp()
     {
-        transform.position = MouseWorldPosition(eventData) + offset;
-
-        //Vector2 mousePosition = eventData.position;
-        //var worldPosition = Camera.main.ScreenPointToRay(mousePosition);
-        //RaycastHit2D hit;
-        //if (Physics2D.Raycast(worldPosition, Vector2.up, Mathf.Infinity, 0)
-        //{
-
-        //}
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        // Validate if the card is over the board, if not, return to original position
-
-    }
-
-    private Vector3 MouseWorldPosition(PointerEventData eventData)
-    {
-        var mouseScreenPos = eventData.position;
-        mouseScreenPos = Camera.main.WorldToScreenPoint(transform.position);
-        return Camera.main.ScreenToWorldPoint(mouseScreenPos);
+        OnCardDrop?.Invoke();
+        if (transform.position != m_originalPosition)
+        {
+            transform.position = m_originalPosition;
+        }
     }
 }

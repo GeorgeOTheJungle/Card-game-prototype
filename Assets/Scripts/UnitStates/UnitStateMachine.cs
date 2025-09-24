@@ -28,10 +28,6 @@ public class UnitStateMachine : MonoBehaviour
         m_healthComponent.InitializeHealth(m_unitInfo.UnitData.Health, this);
     }
 
-    public void DeployUnit()
-    {
-
-    }
     private void InitializeStates()
     {
         foreach (var state in m_states)

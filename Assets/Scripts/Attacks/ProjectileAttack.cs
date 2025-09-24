@@ -10,10 +10,21 @@ public class ProjectileAttack : DamageComponent
     [SerializeField] private LineRenderer m_lineRenderer;
     [SerializeField] private GameObject[] m_onLineEndPrefab;
     private float m_lineWidth;
-    private void Awake()
+    public override void Initialize()
     {
         m_lineRenderer = GetComponent<LineRenderer>();
+        if (m_lineRenderer == null)
+        {
+            m_lineRenderer = gameObject.AddComponent<LineRenderer>();
+        }
+
+        m_lineRenderer.startWidth = 0.5f;
+
+        var materials = new List<Material> { GameManager.Instance.RangeAttackMaterial };
+        m_lineRenderer.SetMaterials(materials);
+
         m_lineWidth = m_lineRenderer.startWidth;
+        m_lineRenderer.sortingLayerName = "VFX";
     }
     public override void PerformVisualAttack(float damage, Vector2 target, Vector2 center)
     {

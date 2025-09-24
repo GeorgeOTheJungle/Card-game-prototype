@@ -4,32 +4,62 @@ using UnityEngine;
 
 public class IdleState : State
 {
+    [SerializeField] private bool m_buildingBehavior;
+
+    private float m_idleTime;
+    private float m_idleCounter;
     public override void OnIntialization()
     {
         base.OnIntialization();
-        Agent.updateRotation = false;
-        Agent.updateUpAxis = false;
+    }
+
+    public override void OnStart()
+    {
+        m_idleTime = UnitInfo.UnitData.IdleTime;
     }
 
     public override void OnUpdate()
     {
-        var layerMask = LayerMask.GetMask("Unit");
-        var targetCheck = Physics2D.OverlapCircleAll(transform.position, UnitInfo.UnitData.Range, layerMask);
-
-        foreach (var target in targetCheck)
+        if (m_idleCounter <= m_idleTime)
         {
-            if (target.TryGetComponent(out UnitInfo unit))
-            {
-                if (unit.Team == UnitInfo.Team)
-                {
-                    // Ally targeting only?
-                    continue;
-                }
+            m_idleCounter += Time.deltaTime;
+        }
+        else
+        {
+            m_idleCounter = 0;
+            DecideAction();
+        }
 
-                UnitStateMachine.Target = unit;
-                UnitStateMachine.ChangeState(UnitStates.Channeling);
-                break;
+
+    }
+
+    private void DecideAction()
+    {
+        if (m_buildingBehavior)
+        {
+            var layerMask = LayerMask.GetMask("Unit");
+            var targetCheck = Physics2D.OverlapCircleAll(transform.position, UnitInfo.UnitData.Range, layerMask);
+
+            foreach (var target in targetCheck)
+            {
+                if (target.TryGetComponent(out UnitInfo unit))
+                {
+                    if (unit.Team == UnitInfo.Team)
+                    {
+                        // Ally targeting only?
+                        continue;
+                    }
+
+                    UnitStateMachine.Target = unit;
+                    UnitStateMachine.ChangeState(UnitStates.Channeling);
+                    break;
+                }
             }
+        }
+        else
+        {
+            UnitStateMachine.FindTarget();
+            UnitStateMachine.ChangeState(UnitStates.Moving);
         }
     }
 }

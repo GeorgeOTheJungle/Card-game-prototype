@@ -6,9 +6,20 @@ public class InvokingState : State
 {
     [SerializeField] private float m_invokeCounter;
 
+    [SerializeField] private GameObject m_previewSpriteRenderer;
+    [SerializeField] private GameObject m_activeSpriteRenderer;
+
+    public override void OnIntialization()
+    {
+        Agent.updateRotation = false;
+        Agent.updateUpAxis = false;
+    }
     public override void OnStart()
     {
         m_invokeCounter = UnitInfo.UnitData.InvokeTime;
+
+        m_previewSpriteRenderer.SetActive(true);
+        m_activeSpriteRenderer.SetActive(false);
     }
 
     public override void OnUpdate()
@@ -21,6 +32,9 @@ public class InvokingState : State
         {
             UnitStateMachine.FindTarget();
             UnitStateMachine.ChangeState(UnitStates.Moving);
+
+            m_previewSpriteRenderer.SetActive(false);
+            m_activeSpriteRenderer.SetActive(true);
         }
     }
 }

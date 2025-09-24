@@ -12,14 +12,16 @@ public class ChannelState : State
         m_aggroRange = UnitInfo.UnitData.Range;
         m_channelTime = UnitInfo.UnitData.AttackSpeed;
 
-        Agent.isStopped = true;
+        if (Agent)
+            Agent.isStopped = true;
     }
 
     public override void OnUpdate()
     {
         if (UnitStateMachine.Target == null)
         {
-            UnitStateMachine.FindTarget();
+            //UnitStateMachine.FindTarget();
+            UnitStateMachine.ChangeState(UnitStates.Idle);
             return;
         }
 
