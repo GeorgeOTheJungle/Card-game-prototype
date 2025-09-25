@@ -65,14 +65,7 @@ public class PlayerController : MonoBehaviour
     {
         oldCard.InHand = false;
         m_currentDeck.AddCard(oldCard);
-        CardData nextCard;
-        nextCard = m_currentDeck.GetCard();
-        //do
-        //{
-        //    m_currentCardDrawn++;
-        //    nextCard = m_currentDeck.AvailableCards[m_currentCardDrawn];
-        //} while (m_currentDeck.AvailableCards[m_currentCardDrawn].InHand);
-
+        CardData nextCard = m_currentDeck.GetNextCard(oldCard);
         nextCard.InHand = true;
         return nextCard;
     }

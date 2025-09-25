@@ -12,651 +12,178 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767e0eee4dce4bf4e85adbd36a6ff397, type: 3}
   m_Name: Global Decks Config
   m_EditorClassIdentifier: 
-  TotalCardsGenerated: 24
   TotalDecksGenerated: 1
   DebugPreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
   DebugUnitSprite: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
   Cards:
-  - CardName: Debug Card 0
-    CardDescription: 
-    CardCost: 3
-    CardLevel: 1
-    InHand: 0
-    CardType: 3
-    UnitData:
-      Targets: 2
-      Health: 12
-      Damage: 10
-      AttackSpeed: 1.2294039
-      RangedAttacker: 1
-      Range: 3
-      Speed: 3
-      IdleTime: 0.6946502
-      RestTime: 0.5020108
-      InvokeTime: 0.7407562
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 1
-    CardDescription: 
-    CardCost: 1
-    CardLevel: 1
-    InHand: 0
-    CardType: 1
-    UnitData:
-      Targets: 2
-      Health: 23
-      Damage: 1
-      AttackSpeed: 0.98709506
-      RangedAttacker: 1
-      Range: 2
-      Speed: 4
-      IdleTime: 0.7039025
-      RestTime: 0.51149774
-      InvokeTime: 0.9125565
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 2
-    CardDescription: 
-    CardCost: 0
-    CardLevel: 1
-    InHand: 0
-    CardType: 2
-    UnitData:
-      Targets: 2
-      Health: 19
-      Damage: 11
-      AttackSpeed: 1.2397646
-      RangedAttacker: 1
-      Range: 3
-      Speed: 4
-      IdleTime: 0.5202301
-      RestTime: 0.8089453
-      InvokeTime: 0.26619375
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 3
-    CardDescription: 
-    CardCost: 2
-    CardLevel: 1
-    InHand: 0
-    CardType: 1
-    UnitData:
-      Targets: 2
-      Health: 43
-      Damage: 14
-      AttackSpeed: 0.29089594
-      RangedAttacker: 1
-      Range: 3
-      Speed: 1
-      IdleTime: 0.2768212
-      RestTime: 0.35245025
-      InvokeTime: 0.94248855
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 4
-    CardDescription: 
-    CardCost: 1
-    CardLevel: 1
-    InHand: 0
-    CardType: 1
-    UnitData:
-      Targets: 2
-      Health: 23
-      Damage: 13
-      AttackSpeed: 1.0606482
-      RangedAttacker: 1
-      Range: 3
-      Speed: 1
-      IdleTime: 0.6977211
-      RestTime: 0.9717057
-      InvokeTime: 0.9393077
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 5
-    CardDescription: 
-    CardCost: 3
-    CardLevel: 1
-    InHand: 0
-    CardType: 3
-    UnitData:
-      Targets: 2
-      Health: 48
-      Damage: 6
-      AttackSpeed: 0.65420985
-      RangedAttacker: 1
-      Range: 3
-      Speed: 2
-      IdleTime: 0.6347419
-      RestTime: 0.57293797
-      InvokeTime: 0.6187293
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 6
-    CardDescription: 
-    CardCost: 4
-    CardLevel: 1
-    InHand: 0
-    CardType: 0
-    UnitData:
-      Targets: 2
-      Health: 46
-      Damage: 12
-      AttackSpeed: 1.4310222
-      RangedAttacker: 1
-      Range: 3
-      Speed: 2
-      IdleTime: 0.3497073
-      RestTime: 0.6885564
-      InvokeTime: 0.88239115
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 7
-    CardDescription: 
-    CardCost: 2
-    CardLevel: 1
-    InHand: 0
-    CardType: 3
-    UnitData:
-      Targets: 2
-      Health: 29
-      Damage: 2
-      AttackSpeed: 0.9422056
-      RangedAttacker: 1
-      Range: 3
-      Speed: 2
-      IdleTime: 0.41350618
-      RestTime: 0.45643976
-      InvokeTime: 0.42888618
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 8
-    CardDescription: 
-    CardCost: 2
-    CardLevel: 1
-    InHand: 0
-    CardType: 2
-    UnitData:
-      Targets: 2
-      Health: 10
-      Damage: 3
-      AttackSpeed: 0.9116487
-      RangedAttacker: 1
-      Range: 2
-      Speed: 1
-      IdleTime: 0.35191804
-      RestTime: 0.5648019
-      InvokeTime: 0.83519536
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 9
-    CardDescription: 
-    CardCost: 3
-    CardLevel: 1
-    InHand: 0
-    CardType: 2
-    UnitData:
-      Targets: 2
-      Health: 37
-      Damage: 6
-      AttackSpeed: 0.82159024
-      RangedAttacker: 1
-      Range: 2
-      Speed: 2
-      IdleTime: 0.5426019
-      RestTime: 0.52413785
-      InvokeTime: 0.7169196
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 10
-    CardDescription: 
-    CardCost: 4
-    CardLevel: 1
-    InHand: 0
-    CardType: 2
-    UnitData:
-      Targets: 2
-      Health: 30
-      Damage: 4
-      AttackSpeed: 0.4793381
-      RangedAttacker: 1
-      Range: 3
-      Speed: 3
-      IdleTime: 0.3704142
-      RestTime: 0.9254571
-      InvokeTime: 0.58442384
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 11
-    CardDescription: 
-    CardCost: 0
-    CardLevel: 1
-    InHand: 0
-    CardType: 2
-    UnitData:
-      Targets: 2
-      Health: 34
-      Damage: 6
-      AttackSpeed: 0.3636382
-      RangedAttacker: 1
-      Range: 3
-      Speed: 2
-      IdleTime: 0.55064183
-      RestTime: 0.7054635
-      InvokeTime: 0.7555554
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 12
-    CardDescription: 
-    CardCost: 2
-    CardLevel: 1
-    InHand: 0
-    CardType: 1
-    UnitData:
-      Targets: 2
-      Health: 20
-      Damage: 4
-      AttackSpeed: 0.5739334
-      RangedAttacker: 1
-      Range: 2
-      Speed: 3
-      IdleTime: 0.4662531
-      RestTime: 0.44801286
-      InvokeTime: 0.73724794
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 13
-    CardDescription: 
-    CardCost: 3
-    CardLevel: 1
-    InHand: 0
-    CardType: 2
-    UnitData:
-      Targets: 2
-      Health: 28
-      Damage: 14
-      AttackSpeed: 0.7985644
-      RangedAttacker: 1
-      Range: 3
-      Speed: 1
-      IdleTime: 0.6155182
-      RestTime: 0.88161206
-      InvokeTime: 0.697867
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 14
-    CardDescription: 
-    CardCost: 4
-    CardLevel: 1
-    InHand: 0
-    CardType: 3
-    UnitData:
-      Targets: 2
-      Health: 40
-      Damage: 2
-      AttackSpeed: 0.3384156
-      RangedAttacker: 1
-      Range: 3
-      Speed: 2
-      IdleTime: 0.4484704
-      RestTime: 0.72953427
-      InvokeTime: 0.37872073
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 15
-    CardDescription: 
-    CardCost: 0
-    CardLevel: 1
-    InHand: 0
-    CardType: 0
-    UnitData:
-      Targets: 2
-      Health: 24
-      Damage: 14
-      AttackSpeed: 1.2092632
-      RangedAttacker: 1
-      Range: 3
-      Speed: 3
-      IdleTime: 0.5940708
-      RestTime: 0.42895648
-      InvokeTime: 0.8529827
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 16
-    CardDescription: 
-    CardCost: 2
-    CardLevel: 1
-    InHand: 0
-    CardType: 0
-    UnitData:
-      Targets: 2
-      Health: 19
-      Damage: 13
-      AttackSpeed: 1.3907146
-      RangedAttacker: 1
-      Range: 2
-      Speed: 3
-      IdleTime: 0.6912193
-      RestTime: 0.48462152
-      InvokeTime: 0.98231757
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 17
-    CardDescription: 
-    CardCost: 0
-    CardLevel: 1
-    InHand: 0
-    CardType: 3
-    UnitData:
-      Targets: 2
-      Health: 38
-      Damage: 4
-      AttackSpeed: 0.27088055
-      RangedAttacker: 1
-      Range: 3
-      Speed: 2
-      IdleTime: 0.43552417
-      RestTime: 0.9477364
-      InvokeTime: 0.75579506
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 18
-    CardDescription: 
-    CardCost: 0
-    CardLevel: 1
-    InHand: 0
-    CardType: 0
-    UnitData:
-      Targets: 2
-      Health: 48
-      Damage: 7
-      AttackSpeed: 1.0637901
-      RangedAttacker: 1
-      Range: 2
-      Speed: 2
-      IdleTime: 0.43077618
-      RestTime: 0.902547
-      InvokeTime: 0.48512954
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 19
-    CardDescription: 
-    CardCost: 4
-    CardLevel: 1
-    InHand: 0
-    CardType: 0
-    UnitData:
-      Targets: 2
-      Health: 33
-      Damage: 12
-      AttackSpeed: 1.4325386
-      RangedAttacker: 1
-      Range: 3
-      Speed: 3
-      IdleTime: 0.537671
-      RestTime: 0.5185313
-      InvokeTime: 0.27021044
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 20
-    CardDescription: 
-    CardCost: 0
-    CardLevel: 1
-    InHand: 0
-    CardType: 3
-    UnitData:
-      Targets: 2
-      Health: 28
-      Damage: 8
-      AttackSpeed: 1.1765906
-      RangedAttacker: 1
-      Range: 2
-      Speed: 2
-      IdleTime: 0.40079716
-      RestTime: 0.8209142
-      InvokeTime: 0.7875465
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 21
-    CardDescription: 
-    CardCost: 3
-    CardLevel: 1
-    InHand: 0
-    CardType: 0
-    UnitData:
-      Targets: 2
-      Health: 49
-      Damage: 11
-      AttackSpeed: 0.78211105
-      RangedAttacker: 1
-      Range: 3
-      Speed: 4
-      IdleTime: 0.47666103
-      RestTime: 0.923656
-      InvokeTime: 0.41543007
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 22
-    CardDescription: 
-    CardCost: 4
-    CardLevel: 1
-    InHand: 0
-    CardType: 2
-    UnitData:
-      Targets: 2
-      Health: 20
-      Damage: 2
-      AttackSpeed: 0.9648664
-      RangedAttacker: 1
-      Range: 3
-      Speed: 3
-      IdleTime: 0.2551741
-      RestTime: 0.8146262
-      InvokeTime: 0.35465595
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
-  - CardName: Debug Card 23
-    CardDescription: 
-    CardCost: 4
-    CardLevel: 1
-    InHand: 0
-    CardType: 0
-    UnitData:
-      Targets: 2
-      Health: 47
-      Damage: 12
-      AttackSpeed: 0.9756041
-      RangedAttacker: 1
-      Range: 2
-      Speed: 1
-      IdleTime: 0.38702503
-      RestTime: 0.6686606
-      InvokeTime: 0.25863636
-    CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-    PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-    UnitAnimator: {fileID: 0}
+  - {fileID: 11400000, guid: 5dcc51f078be9834996bd66d7a81f4d1, type: 2}
+  - {fileID: 11400000, guid: f963b4a31e215754ebb6fbd149c9f95a, type: 2}
+  - {fileID: 11400000, guid: cd1e61da226b778489d6279b751d95cc, type: 2}
+  - {fileID: 11400000, guid: bf5116b5317decc4b92df960f00da897, type: 2}
+  - {fileID: 11400000, guid: ad578064499acea49a039382a6d19fcc, type: 2}
+  - {fileID: 11400000, guid: 1327332a15a5f92449a8b4f82f18ef5c, type: 2}
+  - {fileID: 11400000, guid: 7493136c74f909b4d9be8114edffb692, type: 2}
+  - {fileID: 11400000, guid: a3a5623c5013a7b42b71f4d831a8882b, type: 2}
   PremadeDecks:
   - DeckName: Deck 0
     AvailableCards:
-    - CardName: Debug Card 0
-      CardDescription: 
-      CardCost: 3
-      CardLevel: 1
-      InHand: 1
-      CardType: 3
-      UnitData:
-        Targets: 2
-        Health: 12
-        Damage: 10
-        AttackSpeed: 1.2294039
-        RangedAttacker: 1
-        Range: 3
-        Speed: 3
-        IdleTime: 0.6946502
-        RestTime: 0.5020108
-        InvokeTime: 0.7407562
-      CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-      PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-      UnitAnimator: {fileID: 0}
-    - CardName: Debug Card 1
+    - InHand: 1
+      CardName: Archer
       CardDescription: 
       CardCost: 1
       CardLevel: 1
-      InHand: 1
-      CardType: 1
-      UnitData:
-        Targets: 2
-        Health: 23
-        Damage: 1
-        AttackSpeed: 0.98709506
-        RangedAttacker: 1
-        Range: 2
-        Speed: 4
-        IdleTime: 0.7039025
-        RestTime: 0.51149774
-        InvokeTime: 0.9125565
-      CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-      PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-      UnitAnimator: {fileID: 0}
-    - CardName: Debug Card 2
-      CardDescription: 
-      CardCost: 0
-      CardLevel: 1
-      InHand: 1
-      CardType: 2
-      UnitData:
-        Targets: 2
-        Health: 19
-        Damage: 11
-        AttackSpeed: 1.2397646
-        RangedAttacker: 1
-        Range: 3
-        Speed: 4
-        IdleTime: 0.5202301
-        RestTime: 0.8089453
-        InvokeTime: 0.26619375
-      CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-      PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-      UnitAnimator: {fileID: 0}
-    - CardName: Debug Card 3
-      CardDescription: 
-      CardCost: 2
-      CardLevel: 1
-      InHand: 1
-      CardType: 1
-      UnitData:
-        Targets: 2
-        Health: 43
-        Damage: 14
-        AttackSpeed: 0.29089594
-        RangedAttacker: 1
-        Range: 3
-        Speed: 1
-        IdleTime: 0.2768212
-        RestTime: 0.35245025
-        InvokeTime: 0.94248855
-      CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-      PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-      UnitAnimator: {fileID: 0}
-    - CardName: Debug Card 4
-      CardDescription: 
-      CardCost: 1
-      CardLevel: 1
-      InHand: 1
-      CardType: 1
-      UnitData:
-        Targets: 2
-        Health: 23
-        Damage: 13
-        AttackSpeed: 1.0606482
-        RangedAttacker: 1
-        Range: 3
-        Speed: 1
-        IdleTime: 0.6977211
-        RestTime: 0.9717057
-        InvokeTime: 0.9393077
-      CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-      PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-      UnitAnimator: {fileID: 0}
-    - CardName: Debug Card 5
-      CardDescription: 
-      CardCost: 3
-      CardLevel: 1
-      InHand: 1
-      CardType: 3
-      UnitData:
-        Targets: 2
-        Health: 48
-        Damage: 6
-        AttackSpeed: 0.65420985
-        RangedAttacker: 1
-        Range: 3
-        Speed: 2
-        IdleTime: 0.6347419
-        RestTime: 0.57293797
-        InvokeTime: 0.6187293
-      CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-      PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
-      UnitAnimator: {fileID: 0}
-    - CardName: Debug Card 6
-      CardDescription: 
-      CardCost: 4
-      CardLevel: 1
-      InHand: 1
       CardType: 0
       UnitData:
         Targets: 2
-        Health: 46
-        Damage: 12
-        AttackSpeed: 1.4310222
+        Health: 75
+        Damage: 5
+        AttackSpeed: 0.75
         RangedAttacker: 1
-        Range: 3
-        Speed: 2
-        IdleTime: 0.3497073
-        RestTime: 0.6885564
-        InvokeTime: 0.88239115
-      CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-      PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
+        Range: 2
+        Speed: 5
+        IdleTime: 0.25
+        RestTime: 0.5
+        InvokeTime: 0.75
+      CardImage: {fileID: -596166984, guid: e3e286245e8a5084984a13f02b1f1398, type: 3}
+      PreviewSprite: {fileID: -596166984, guid: e3e286245e8a5084984a13f02b1f1398, type: 3}
       UnitAnimator: {fileID: 0}
-    - CardName: Debug Card 7
+    - InHand: 1
+      CardName: Long Archer
       CardDescription: 
       CardCost: 2
       CardLevel: 1
-      InHand: 1
+      CardType: 0
+      UnitData:
+        Targets: 2
+        Health: 50
+        Damage: 15
+        AttackSpeed: 0.5
+        RangedAttacker: 1
+        Range: 3
+        Speed: 3
+        IdleTime: 0.25
+        RestTime: 0.5
+        InvokeTime: 0.75
+      CardImage: {fileID: -596166984, guid: e3e286245e8a5084984a13f02b1f1398, type: 3}
+      PreviewSprite: {fileID: -596166984, guid: e3e286245e8a5084984a13f02b1f1398, type: 3}
+      UnitAnimator: {fileID: 0}
+    - InHand: 1
+      CardName: Sniper Archer
+      CardDescription: 
+      CardCost: 3
+      CardLevel: 1
+      CardType: 0
+      UnitData:
+        Targets: 2
+        Health: 50
+        Damage: 25
+        AttackSpeed: 1
+        RangedAttacker: 1
+        Range: 5.5
+        Speed: 2
+        IdleTime: 0.25
+        RestTime: 0.5
+        InvokeTime: 0.75
+      CardImage: {fileID: -596166984, guid: e3e286245e8a5084984a13f02b1f1398, type: 3}
+      PreviewSprite: {fileID: -596166984, guid: e3e286245e8a5084984a13f02b1f1398, type: 3}
+      UnitAnimator: {fileID: 0}
+    - InHand: 1
+      CardName: Brawler
+      CardDescription: 
+      CardCost: 3
+      CardLevel: 1
+      CardType: 1
+      UnitData:
+        Targets: 2
+        Health: 120
+        Damage: 10
+        AttackSpeed: 0.75
+        RangedAttacker: 0
+        Range: 1
+        Speed: 3
+        IdleTime: 0.25
+        RestTime: 0.25
+        InvokeTime: 0.75
+      CardImage: {fileID: -751559128, guid: e3e286245e8a5084984a13f02b1f1398, type: 3}
+      PreviewSprite: {fileID: -751559128, guid: e3e286245e8a5084984a13f02b1f1398, type: 3}
+      UnitAnimator: {fileID: 0}
+    - InHand: 0
+      CardName: Tanky
+      CardDescription: 
+      CardCost: 1
+      CardLevel: 1
+      CardType: 0
+      UnitData:
+        Targets: 1
+        Health: 200
+        Damage: 5
+        AttackSpeed: 1
+        RangedAttacker: 0
+        Range: 1
+        Speed: 2
+        IdleTime: 0.25
+        RestTime: 0.5
+        InvokeTime: 0.75
+      CardImage: {fileID: -751559128, guid: e3e286245e8a5084984a13f02b1f1398, type: 3}
+      PreviewSprite: {fileID: -751559128, guid: e3e286245e8a5084984a13f02b1f1398, type: 3}
+      UnitAnimator: {fileID: 0}
+    - InHand: 1
+      CardName: FastGuy
+      CardDescription: 
+      CardCost: 1
+      CardLevel: 1
+      CardType: 0
+      UnitData:
+        Targets: 2
+        Health: 15
+        Damage: 5
+        AttackSpeed: 0.25
+        RangedAttacker: 0
+        Range: 1
+        Speed: 6
+        IdleTime: 0.25
+        RestTime: 0.25
+        InvokeTime: 0.75
+      CardImage: {fileID: -751559128, guid: e3e286245e8a5084984a13f02b1f1398, type: 3}
+      PreviewSprite: {fileID: -751559128, guid: e3e286245e8a5084984a13f02b1f1398, type: 3}
+      UnitAnimator: {fileID: 0}
+    - InHand: 1
+      CardName: Spell Damage
+      CardDescription: 
+      CardCost: 5
+      CardLevel: 1
       CardType: 3
       UnitData:
         Targets: 2
-        Health: 29
-        Damage: 2
-        AttackSpeed: 0.9422056
-        RangedAttacker: 1
-        Range: 3
-        Speed: 2
-        IdleTime: 0.41350618
-        RestTime: 0.45643976
-        InvokeTime: 0.42888618
-      CardImage: {fileID: 21300000, guid: cecff267b5235064192277727a8b9250, type: 3}
-      PreviewSprite: {fileID: 21300000, guid: a11763d9c5953bb4289df15c32728737, type: 3}
+        Health: 75
+        Damage: 50
+        AttackSpeed: 0.75
+        RangedAttacker: 0
+        Range: 1
+        Speed: 3
+        IdleTime: 0.25
+        RestTime: 0.5
+        InvokeTime: 0.75
+      CardImage: {fileID: 21300000, guid: 68ad4f5d6fe957c4789aedd21ff67ced, type: 3}
+      PreviewSprite: {fileID: 21300000, guid: 68ad4f5d6fe957c4789aedd21ff67ced, type: 3}
+      UnitAnimator: {fileID: 0}
+    - InHand: 1
+      CardName: Unit Invoke
+      CardDescription: 
+      CardCost: 1
+      CardLevel: 1
+      CardType: 3
+      UnitData:
+        Targets: 2
+        Health: 75
+        Damage: 5
+        AttackSpeed: 0.75
+        RangedAttacker: 0
+        Range: 1
+        Speed: 3
+        IdleTime: 0.25
+        RestTime: 0.5
+        InvokeTime: 0.75
+      CardImage: {fileID: 21300000, guid: 273c8b5db6e39534781066db3444fe88, type: 3}
+      PreviewSprite: {fileID: 21300000, guid: 273c8b5db6e39534781066db3444fe88, type: 3}
       UnitAnimator: {fileID: 0}

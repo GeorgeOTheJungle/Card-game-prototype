@@ -9,7 +9,6 @@ using UnityEngine;
 public class DeckConfig : ScriptableObject
 {
     [Header("Debug")]
-    public int TotalCardsGenerated = 8;
     public int TotalDecksGenerated = 1;
 
     public Sprite DebugPreviewSprite;
@@ -17,61 +16,61 @@ public class DeckConfig : ScriptableObject
 
     [Space(10)]
     [Header("Cards")]
-    public List<CardData> Cards = new List<CardData>();
+    public List<CardScriptable> Cards = new List<CardScriptable>();
     [Space(5)]
     public List<Deck> PremadeDecks = new List<Deck>();
 
-    [ContextMenu("GenerateRandomCards")]
-    public void GenerateRandomCards()
-    {
-        Cards.Clear();
-        for (int i = 0; i < TotalCardsGenerated; i++)
-        {
-            var card = new CardData();
-            card.CardName = $"Debug Card {i}";
-            card.CardDescription = "";
+    //[ContextMenu("GenerateRandomCards")]
+    //public void GenerateRandomCards()
+    //{
+    //    Cards.Clear();
+    //    for (int i = 0; i < TotalCardsGenerated; i++)
+    //    {
+    //        var card = new CardData();
+    //        card.CardName = $"Debug Card {i}";
+    //        card.CardDescription = "";
 
-            card.CardCost = UnityEngine.Random.Range(0, 5);
-            card.CardLevel = 1;
-            card.CardType = (CardData.CardTypes)UnityEngine.Random.Range(0, 4);
+    //        card.CardCost = UnityEngine.Random.Range(0, 5);
+    //        card.CardLevel = 1;
+    //        card.CardType = (CardData.CardTypes)UnityEngine.Random.Range(0, 4);
 
-            float health = UnityEngine.Random.Range(10, 50);
-            float damage = UnityEngine.Random.Range(1, 15);
-            float attackSpeed = UnityEngine.Random.Range(0.25f, 1.5f);
+    //        float health = UnityEngine.Random.Range(10, 50);
+    //        float damage = UnityEngine.Random.Range(1, 15);
+    //        float attackSpeed = UnityEngine.Random.Range(0.25f, 1.5f);
 
-            float range = UnityEngine.Random.Range(2, 4);
-            float speed = UnityEngine.Random.Range(1, 5);
+    //        float range = UnityEngine.Random.Range(2, 4);
+    //        float speed = UnityEngine.Random.Range(1, 5);
 
-            float idleTime = UnityEngine.Random.Range(0.25f, 0.75f);
-            float restTime = UnityEngine.Random.Range(0.35f, 1);
-            float invokeTime = UnityEngine.Random.Range(0.25f, 1f);
+    //        float idleTime = UnityEngine.Random.Range(0.25f, 0.75f);
+    //        float restTime = UnityEngine.Random.Range(0.35f, 1);
+    //        float invokeTime = UnityEngine.Random.Range(0.25f, 1f);
 
-            var unitData = new UnitData(TargetTypes.Both, health, damage, attackSpeed, range, speed, idleTime, restTime, invokeTime, card.CardType, card.CardLevel);
-            card.UnitData = unitData;
+    //        var unitData = new UnitData(TargetTypes.Both, health, damage, attackSpeed, range, speed, idleTime, restTime, invokeTime, card.CardType, card.CardLevel);
+    //        card.UnitData = unitData;
 
-            card.PreviewSprite = DebugPreviewSprite;
-            card.CardImage = DebugUnitSprite;
-            Cards.Add(card);
-        }
-    }
+    //        card.PreviewSprite = DebugPreviewSprite;
+    //        card.CardImage = DebugUnitSprite;
+    //        Cards.Add(card.);
+    //    }
+    //}
 
-    [ContextMenu("GenerateRandomDeck")]
-    public void GenerateRandomDecks()
-    {
-        PremadeDecks.Clear();
-        for (int i = 0; i < TotalDecksGenerated; i++)
-        {
-            var cardList = new List<CardData>();
-            for (int d = 0; d < 8; d++)
-            {
-                var card = Cards[UnityEngine.Random.Range(0, Cards.Count)];
-                cardList.Add(card);
-            }
+    //[ContextMenu("GenerateRandomDeck")]
+    //public void GenerateRandomDecks()
+    //{
+    //    PremadeDecks.Clear();
+    //    for (int i = 0; i < TotalDecksGenerated; i++)
+    //    {
+    //        var cardList = new List<CardData>();
+    //        for (int d = 0; d < 8; d++)
+    //        {
+    //            var card = Cards[UnityEngine.Random.Range(0, Cards.Count)];
+    //            cardList.Add(card);
+    //        }
 
-            var deck = new Deck($"Deck {i}", cardList);
-            PremadeDecks.Add(deck);
-        }
-    }
+    //        var deck = new Deck($"Deck {i}", cardList);
+    //        PremadeDecks.Add(deck);
+    //    }
+    //}
 
     [ContextMenu("GenerateDeck")]
     public void GenerateDeck()
@@ -83,7 +82,7 @@ public class DeckConfig : ScriptableObject
             for (int d = 0; d < 8; d++)
             {
                 var card = Cards[d];
-                cardList.Add(card);
+                cardList.Add(card.CardData);
             }
 
             var deck = new Deck($"Deck {i}", cardList);
@@ -138,9 +137,17 @@ public struct Deck
         AvailableCards.Add(cardData);
     }
 
-    public CardData GetCard()
+    public CardData GetNextCard(CardData exclude = null)
     {
         var card = AvailableCards[0];
+        for (int i = 0; i < AvailableCards.Count; i++)
+        {
+            if (AvailableCards[i] != exclude && AvailableCards[i].InHand == false)
+            {
+                card = AvailableCards[i];
+            }
+        }
+
         RemoveCard(card);
         card.InHand = true;
         return card;
@@ -163,16 +170,19 @@ public struct Deck
 [Serializable]
 public class CardData
 {
+    public bool InHand;
     public string CardName;
     public string CardDescription;
+    [Space]
 
     public int CardCost;
     public int CardLevel;
-    public bool InHand;
     public CardTypes CardType;
+    [Space]
 
     public UnitData UnitData;
 
+    [Space]
     public Sprite CardImage;
     public Sprite PreviewSprite;
     public Animator UnitAnimator;

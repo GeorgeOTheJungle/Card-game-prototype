@@ -17,9 +17,10 @@ public class UnitCreatorController : MonoBehaviour
     }
     public void CreateUnit(Vector2 position, CardData data, Team team)
     {
-        
-        var unit = Instantiate(m_unitPrefab, position, Quaternion.identity);
+        // If its a spell, then instantiate the spell prefab not the unit base
+        var root = team == Team.Player ? m_playerUnitsRoot : m_opponentUnitsRoot;
+        var unit = Instantiate(m_unitPrefab, position, Quaternion.identity, root);
         unit.IntializeUnit(data.UnitData, team, data.CardImage, data.PreviewSprite, data.UnitAnimator);
-
+        unit.gameObject.name = $"({team}) {data.CardName}";
     }
 }

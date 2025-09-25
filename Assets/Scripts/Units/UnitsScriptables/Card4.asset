@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d8a56ef69dc7842a2c32cbb650cb9e, type: 3}
+  m_Name: Card4
+  m_EditorClassIdentifier: 
+  CardData:
+    InHand: 0
+    CardName: Tanky
+    CardDescription: 
+    CardCost: 1
+    CardLevel: 1
+    CardType: 0
+    UnitData:
+      Targets: 1
+      Health: 200
+      Damage: 5
+      AttackSpeed: 1
+      RangedAttacker: 0
+      Range: 1
+      Speed: 2
+      IdleTime: 0.25
+      RestTime: 0.5
+      InvokeTime: 0.75
+    CardImage: {fileID: -751559128, guid: e3e286245e8a5084984a13f02b1f1398, type: 3}
+    PreviewSprite: {fileID: -751559128, guid: e3e286245e8a5084984a13f02b1f1398, type: 3}
+    UnitAnimator: {fileID: 0}

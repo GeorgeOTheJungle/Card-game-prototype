@@ -13,8 +13,13 @@ public class AttackingState : State
         if (UnitInfo.UnitData.RangedAttacker)
         {
             m_damageComponent = gameObject.AddComponent<ProjectileAttack>();
-            m_damageComponent.Initialize();
         }
+        else
+        {
+            m_damageComponent = gameObject.AddComponent<MeleeAttack>();
+        }
+
+        m_damageComponent.Initialize();
     }
     public override void OnStart()
     {

@@ -18,6 +18,7 @@ public class PreviewComponent : MonoBehaviour
     {
         SetPreview(new Vector2(100, 100), null);
     }
+    // Modify this to check if its a unit or a spell
     public void SetPreview(Vector2 position, Sprite previewSprite)
     {
         transform.position = position;

@@ -248,9 +248,9 @@ MonoBehaviour:
     Team: 1
     Health: 1500
     IdleTime: 0.5
-    Damage: 5
+    Damage: 25
     AttackSpeed: 1
-    Range: 4
+    Range: 3
   m_target: {fileID: 0}
 --- !u!114 &6479914634926649175
 MonoBehaviour:
