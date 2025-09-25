@@ -9,6 +9,8 @@ public class ProjectileAttack : DamageComponent
     [SerializeField] private float m_projectileOffset = 0.5f;
     [SerializeField] private LineRenderer m_lineRenderer;
     [SerializeField] private GameObject[] m_onLineEndPrefab;
+    [Space]
+    [SerializeField] private Material m_defaultLineMaterial;
     private float m_lineWidth;
     public override void Initialize()
     {
@@ -20,11 +22,14 @@ public class ProjectileAttack : DamageComponent
 
         m_lineRenderer.startWidth = 0.5f;
 
-        var materials = new List<Material> { GameManager.Instance.RangeAttackMaterial };
-        m_lineRenderer.SetMaterials(materials);
-
         m_lineWidth = m_lineRenderer.startWidth;
         m_lineRenderer.sortingLayerName = "VFX";
+
+        if (m_defaultLineMaterial == null)
+        {
+            var materials = new List<Material> { GameManager.Instance.RangeAttackMaterial };
+            m_lineRenderer.SetMaterials(materials);
+        }
     }
     public override void PerformVisualAttack(float damage, Vector2 target, Vector2 center)
     {

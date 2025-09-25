@@ -11,13 +11,13 @@ public class GameManager : MonoBehaviour
     public GameRules GlobalGameRules;
 
     [Header("Opponent Data")]
-    public UnitInfo[] OpponentStructures;
+    public List<TowerComponent> OpponentStructures;
     public List<Transform> OpponentUnits;
 
     [Header("Player Data")]
     [SerializeField] private PlayerController m_playerController;
 
-    public UnitInfo[] PlayerStructures;
+    public List<TowerComponent> PlayerStructures;
     public List<Transform> PlayerUnits;
 
     [Header("Global References"), Space(5)]
@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
         public float EnergyRegen;
         public float MaxEnergy;
     }
+
     private void Awake()
     {
         Instance = this;
@@ -59,6 +60,15 @@ public class GameManager : MonoBehaviour
     {
         // Initialize Players
         m_playerController.InitializePlayer(GlobalGameRules.MaxEnergy);
+        foreach (var tower in OpponentStructures)
+        {
+            tower.InitializeTower();
+        }
+
+        foreach (var tower in PlayerStructures)
+        {
+            tower.InitializeTower();
+        }
     }
 
     private void Update()
@@ -69,6 +79,12 @@ public class GameManager : MonoBehaviour
     {
         List<Transform> unitsList = team == Team.Player ? PlayerUnits : OpponentUnits;
         unitsList.Remove(unit);
+    }
+
+    public void RemoveTowerFromTeamList(TowerComponent tower, Team team)
+    {
+        List<TowerComponent> towerList = team == Team.Player ? PlayerStructures : OpponentStructures;
+        towerList.Remove(tower);
     }
 
     public void AddUnitToTeamList(Transform unit, Team team)
@@ -101,7 +117,7 @@ public class GameManager : MonoBehaviour
         };
     }
 
-    public UnitInfo GetClosestTarget(TargetTypes targetType, Vector2 unitPosition, Team team)
+    public UnitStateMachine.Unit GetClosestTarget(TargetTypes targetType, Vector2 unitPosition, Team team)
     {
         List<Transform> possibleTargets = GetUnitsFromTeam(targetType, team);
 
@@ -142,9 +158,9 @@ public class GameManager : MonoBehaviour
         return result;
     }
 
-    public UnitInfo GetClosestObject(List<Transform> objects, Vector2 unitPosition)
+    public UnitStateMachine.Unit GetClosestObject(List<Transform> objects, Vector2 unitPosition)
     {
-        UnitInfo ret = null;
+        UnitStateMachine.Unit ret = new();
         float minDistance = Mathf.Infinity;
         foreach (var obj in objects)
         {
@@ -154,7 +170,19 @@ public class GameManager : MonoBehaviour
             {
                 if (obj.TryGetComponent(out UnitInfo unit))
                 {
-                    ret = unit;
+                    ret.Info = unit;
+                    ret.TowerComponent = null;
+                    ret.UnitTransform = unit.transform;
+
+                    minDistance = dist;
+                }
+
+                if (obj.TryGetComponent(out TowerComponent tower))
+                {
+                    ret.Info = null;
+                    ret.TowerComponent = tower;
+                    ret.UnitTransform = tower.transform;
+
                     minDistance = dist;
                 }
             }
@@ -174,12 +202,12 @@ public class GameManager : MonoBehaviour
 
         foreach(var building in OpponentStructures)
         {
-            building.UnitData.Range = m_buildingsAttack ? 3 : 0;
+            building.ToggleTowerRange();
         }
 
         foreach (var building in PlayerStructures)
         {
-            building.UnitData.Range = m_buildingsAttack ? 3 : 0;
+            building.ToggleTowerRange();
         }
     }
     #endregion

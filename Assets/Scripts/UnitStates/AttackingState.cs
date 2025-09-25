@@ -22,10 +22,10 @@ public class AttackingState : State
         m_attackCounter = UnitInfo.UnitData.AttackSpeed;
 
         float unitDamage = UnitInfo.UnitData.Damage;
-        UnitInfo targetUnitInfo = UnitStateMachine.Target;
+
         Vector2 unitCenter = UnitInfo.UnitCenter.position;
         if (m_damageComponent)
-            m_damageComponent.PerformAttack(unitDamage, targetUnitInfo, unitCenter);
+            m_damageComponent.PerformAttack(unitDamage, UnitStateMachine.TargetInfo.UnitTransform, unitCenter);
 
         UnitStateMachine.ChangeState(UnitStates.Resting);
     }

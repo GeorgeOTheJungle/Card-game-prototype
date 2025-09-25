@@ -18,14 +18,14 @@ public class ChannelState : State
 
     public override void OnUpdate()
     {
-        if (UnitStateMachine.Target == null)
+        if (UnitStateMachine.TargetInfo.HasInfo == false)
         {
             //UnitStateMachine.FindTarget();
             UnitStateMachine.ChangeState(UnitStates.Idle);
             return;
         }
 
-        if (Vector2.Distance(transform.position, UnitStateMachine.Target.transform.position) >= m_aggroRange)
+        if (Vector2.Distance(transform.position, UnitStateMachine.TargetInfo.UnitTransform.position) >= m_aggroRange)
         {
             UnitStateMachine.ChangeState(UnitStates.Moving);
         }

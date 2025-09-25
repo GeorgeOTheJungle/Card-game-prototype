@@ -17,9 +17,19 @@ public class MovementState : State
 
     public override void OnUpdate()
     {
-        Agent.SetDestination(UnitStateMachine.Target.transform.position);
+        if (UnitStateMachine.TargetInfo.HasInfo)
+        {
+            Agent.isStopped = false;
+            Agent.SetDestination(UnitStateMachine.TargetInfo.UnitTransform.position);
+        }
+        else
+        {
+            Agent.isStopped = true;
+            UnitStateMachine.ChangeState(UnitStates.Idle);
+            return;
+        }
 
-        if (Vector2.Distance(transform.position, UnitStateMachine.Target.transform.position) <= m_range)
+        if (Vector2.Distance(transform.position, UnitStateMachine.TargetInfo.UnitTransform.position) <= m_range)
         {
             UnitStateMachine.ChangeState(UnitStates.Channeling);
         }

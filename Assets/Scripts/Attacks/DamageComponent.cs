@@ -6,14 +6,15 @@ public abstract class DamageComponent : MonoBehaviour
 {
 
     public virtual void Initialize() { }
-    public void PerformAttack(float damage, UnitInfo targetInfo, Vector2 center)
+
+    public void PerformAttack(float damage, Transform target, Vector2 center)
     {
-        if (targetInfo.TryGetComponent(out HealthComponent healthComponent))
+        if (target.TryGetComponent(out HealthComponent healthComponent))
         {
             healthComponent.Damage(damage);
         }
 
-        PerformVisualAttack(damage, targetInfo.UnitCenter.position, center);
+        PerformVisualAttack(damage, target.position, center);
     }
     public abstract void PerformVisualAttack(float damage, Vector2 target, Vector2 center);
 }

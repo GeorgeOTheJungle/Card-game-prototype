@@ -29,37 +29,16 @@ public class IdleState : State
             m_idleCounter = 0;
             DecideAction();
         }
-
-
     }
 
     private void DecideAction()
     {
-        if (m_buildingBehavior)
-        {
-            var layerMask = LayerMask.GetMask("Unit");
-            var targetCheck = Physics2D.OverlapCircleAll(transform.position, UnitInfo.UnitData.Range, layerMask);
-
-            foreach (var target in targetCheck)
-            {
-                if (target.TryGetComponent(out UnitInfo unit))
-                {
-                    if (unit.Team == UnitInfo.Team)
-                    {
-                        // Ally targeting only?
-                        continue;
-                    }
-
-                    UnitStateMachine.Target = unit;
-                    UnitStateMachine.ChangeState(UnitStates.Channeling);
-                    break;
-                }
-            }
-        }
-        else
+        if (UnitStateMachine.TargetInfo.HasInfo == false)
         {
             UnitStateMachine.FindTarget();
-            UnitStateMachine.ChangeState(UnitStates.Moving);
+            return;
         }
+
+        UnitStateMachine.ChangeState(UnitStates.Channeling);
     }
 }

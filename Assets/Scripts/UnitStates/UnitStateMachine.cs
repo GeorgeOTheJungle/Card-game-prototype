@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UnitStateMachine : MonoBehaviour
 {
-    public UnitInfo Target;
+    public Unit TargetInfo;
     [SerializeField] private UnitStates m_startingState;
     [SerializeField] private UnitStates m_currentState;
     [HideInInspector] public UnitInfo m_unitInfo;
@@ -15,6 +15,20 @@ public class UnitStateMachine : MonoBehaviour
     private State m_state;
     private HealthComponent m_healthComponent;
 
+    [Serializable]
+    public struct Unit
+    {
+        public readonly bool HasInfo
+        {
+            get
+            {
+                return Info != null || TowerComponent != null;
+            }
+        }
+        public UnitInfo Info;
+        public TowerComponent TowerComponent;
+        public Transform UnitTransform;
+    }
     private void Awake()
     {
         m_unitInfo = GetComponent<UnitInfo>();
@@ -65,10 +79,10 @@ public class UnitStateMachine : MonoBehaviour
 
     public void FindTarget()
     {
-        if (Target != null)
+        if (TargetInfo.Equals(null))
             return;
 
-        Target = GameManager.Instance.GetClosestTarget(m_unitInfo.UnitData.Targets, transform.position, m_unitInfo.Team);
+        TargetInfo = GameManager.Instance.GetClosestTarget(m_unitInfo.UnitData.Targets, transform.position, m_unitInfo.Team);
     }
 }
 
